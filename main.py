@@ -2,7 +2,12 @@
 A simple text editor in pygame
 '''
 
+import sys
 import pygame as pg
+from format_text import *
+from get_input import *
+
+SIZE = (1280,720)
 
 # Define some colors
 BLACK = pg.Color(0, 0, 0)
@@ -11,12 +16,6 @@ GREY = pg.Color(200, 200, 200)
 GREEN = pg.Color(69, 175, 100)
 RED = pg.Color(175, 69, 125)
 BLUE = pg.Color(69, 100, 175)
-
-pg.init()
-size = (1280,720)
-screen = pg.display.set_mode(size)
-pg.display.set_caption("My Game")
-clock = pg.time.Clock()
 
 class Block(pg.sprite.Sprite):
     def __init__(self, position, size, color=GREY): # position and size are lists of 2 [x,y]
@@ -29,28 +28,40 @@ class Block(pg.sprite.Sprite):
 
         self.pos = pg.math.Vector2(0,0)
 
-# Generate entities before loop
+class Main:
+    def __init__(self):
+        pg.init()
+        self.screen = pg.display.set_mode(SIZE)
+        pg.display.set_caption("Edit Text")
+        self.clock = pg.time.Clock()
+        self.main_string = ''
+        self.done = False
 
-# Main Program Loop 
-done = False
-while not done:
-    # User input
-    for event in pg.event.get():
-        if event.type == pg.QUIT:
-            done = True
+    # Main Program Loop 
+    def run(self):
+        while not self.done:
+            # User input
+            for event in pg.event.get():
+                self.main_string, self.done = get_input(self.main_string, event, self.done)
 
-        elif event.type == pg.KEYDOWN:
-            if event.key == pg.K_ESCAPE:
-                done = True       
- 
-    # Game logic
- 
-    # Drawing code
-    screen.fill(BLACK)
+        
+            # logic
 
-    pg.display.flip()
- 
-    clock.tick(60)
- 
+        
+            # Drawing code
+            self.screen.fill(BLACK)
+            print(self.main_string)
+
+            pg.display.flip()
+        
+            self.clock.tick(1)
+        pg.quit()
+        sys.exit()
+
+
+if __name__ == '__main__':
+    main = Main()
+    main.run()
 # Close the window and quit.
-pg.quit()
+
+
