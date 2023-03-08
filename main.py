@@ -7,7 +7,10 @@ import pygame as pg
 from format_text import *
 from get_input import *
 
-SIZE = (1280,720)
+pg.init()
+SIZE = (1280//2,720)
+FONT_SIZE = 200
+FONT = pg.font.SysFont(None,FONT_SIZE)
 
 # Define some colors
 BLACK = pg.Color(0, 0, 0)
@@ -16,6 +19,7 @@ GREY = pg.Color(200, 200, 200)
 GREEN = pg.Color(69, 175, 100)
 RED = pg.Color(175, 69, 125)
 BLUE = pg.Color(69, 100, 175)
+
 
 class Block(pg.sprite.Sprite):
     def __init__(self, position, size, color=GREY): # position and size are lists of 2 [x,y]
@@ -30,7 +34,6 @@ class Block(pg.sprite.Sprite):
 
 class Main:
     def __init__(self):
-        pg.init()
         self.screen = pg.display.set_mode(SIZE)
         pg.display.set_caption("Edit Text")
         self.clock = pg.time.Clock()
@@ -46,15 +49,13 @@ class Main:
 
         
             # logic
-
-        
+            test = format_text(self.main_string, SIZE, FONT)
             # Drawing code
             self.screen.fill(BLACK)
-            print(self.main_string)
-
+            self.screen.blit(test, (0, 0))
             pg.display.flip()
         
-            self.clock.tick(1)
+            self.clock.tick(5)
         pg.quit()
         sys.exit()
 

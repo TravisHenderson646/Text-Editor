@@ -8,6 +8,10 @@ def get_input(current_string, event, done):
         if event.key == pg.K_ESCAPE:
             done = True
         
+        if event.key == pg.K_BACKSPACE:
+            current_string = current_string[:-1]
+        if event.key == pg.K_SPACE:
+            current_string += ' '
         if event.key == pg.K_q:
             current_string += 'q'
         if event.key == pg.K_w:
