@@ -9,7 +9,7 @@ from get_input import *
 
 pg.init()
 SIZE = (1280//2,720)
-FONT_SIZE = 200
+FONT_SIZE = 80
 FONT = pg.font.SysFont(None,FONT_SIZE)
 
 # Define some colors
@@ -40,7 +40,7 @@ class Main:
         self.main_string = ''
         self.done = False
 
-    # Main Program Loop 
+    # Main Program Loop
     def run(self):
         while not self.done:
             # User input
