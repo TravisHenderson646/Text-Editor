@@ -10,17 +10,6 @@ from settings import *
 
 pg.init()
 
-class Block(pg.sprite.Sprite):
-    def __init__(self, position, size, color=GREY): # position and size are lists of 2 [x,y]
-        super().__init__()
-        
-        self.image = pg.Surface(size)
-        self.image.fill(color)
-
-        self.rect = self.image.get_rect(topleft=position)
-
-        self.pos = pg.math.Vector2(0,0)
-
 class Main:
     def __init__(self):
         self.screen = pg.display.set_mode(SIZE)
