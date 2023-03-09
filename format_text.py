@@ -1,4 +1,5 @@
 import pygame as pg
+from settings import *
 
 def format_text(text, textbox_size, font):
     y = 0
@@ -24,19 +25,20 @@ def format_text(text, textbox_size, font):
         
         if text.rfind('☺', 0, j+1) > 0:
             i = text.rfind('☺', 0, j) + 1
-            image = font.render(text[:i-1], True, 'red')
+            image = font.render(text[:i-1], True, COLOR)
             textbox.blit(image, (0, y))
         
         # render and blit line
         else:
-            image = font.render(text[:i], True, 'red')
+            image = font.render(text[:i], True, COLOR)
             textbox.blit(image, (0, y))
+            if i == len(text):
+                pg.draw.line(textbox, GREY, (font.size(text[:i])[0], y), (font.size(text[:i])[0], y + font_height*.8), 3)
         
         y += font_height
 
         # remove text we just blitted for next iteration
         text = text[i:]
-
 
 
     return textbox # doesn't currently handle overflow text
