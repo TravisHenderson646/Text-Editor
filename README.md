@@ -1,4 +1,4 @@
 # Text-Editor
-A simple text editor made in pygame! /n
-Auto saves when you close /n
+A simple text editor made in pygame!  
+Auto saves when you close  
 Supports shift and caps lock
