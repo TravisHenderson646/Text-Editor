@@ -1,5 +1,5 @@
 import pygame as pg
-from settings import *
+import settings as sett
 
 def format_text(text, textbox_size, font):
     y = 0
@@ -25,15 +25,15 @@ def format_text(text, textbox_size, font):
         
         if text.rfind('☺', 0, j+1) > 0:
             i = text.rfind('☺', 0, j) + 1
-            image = font.render(text[:i-1], True, COLOR)
+            image = font.render(text[:i-1], True, sett.COLOR_LIST[sett.COLOR])
             textbox.blit(image, (0, y))
         
         # render and blit line
         else:
-            image = font.render(text[:i], True, COLOR)
+            image = font.render(text[:i], True, sett.COLOR_LIST[sett.COLOR])
             textbox.blit(image, (0, y))
             if i == len(text):
-                pg.draw.line(textbox, GREY, (font.size(text[:i])[0], y), (font.size(text[:i])[0], y + font_height*.8), 3)
+                pg.draw.line(textbox, sett.GREY, (font.size(text[:i])[0], y), (font.size(text[:i])[0], y + font_height*.8), 3)
         
         y += font_height
 

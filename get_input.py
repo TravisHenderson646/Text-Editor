@@ -1,4 +1,5 @@
 import pygame as pg
+import settings as sett
 
 def get_input(current_string, event, done):
     if event.type == pg.QUIT:
@@ -13,7 +14,18 @@ def get_input(current_string, event, done):
         if event.key == pg.K_SPACE:
             current_string += ' '
         if event.key == pg.K_RETURN:
-            current_string += '☺'
+            current_string += '☺' # made alt + 1 my carriage return character
+        if event.key == pg.K_RIGHT:
+            sett.CURRENT_FONT = (sett.CURRENT_FONT + 1) % len(sett.FONTS_LIST)
+            sett.FONT = pg.font.SysFont(sett.FONTS_LIST[sett.CURRENT_FONT], sett.FONT_SIZE)
+        if event.key == pg.K_LEFT:
+            sett.CURRENT_FONT = (sett.CURRENT_FONT-1) % len(sett.FONTS_LIST)
+            sett.FONT = pg.font.SysFont(sett.FONTS_LIST[sett.CURRENT_FONT], sett.FONT_SIZE)
+        if event.key == pg.K_UP:
+            sett.COLOR = (sett.COLOR + 1) % len(sett.COLOR_LIST)
+        if event.key == pg.K_DOWN:
+            sett.COLOR = (sett.COLOR - 1) % len(sett.COLOR_LIST)
+            
 
         # if left or right shift is pressed w/+w/o caps lock
         if event.mod == 4097 or event.mod == 4098 or event.mod == 4099 or event.mod == 12289 or event.mod == 12290 or event.mod == 12291:

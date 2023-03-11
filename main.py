@@ -6,38 +6,36 @@ import sys
 import pygame as pg
 from format_text import *
 from get_input import *
-from settings import *
+import settings as sett
 
 pg.init()
 
 class Main:
     def __init__(self):
-        self.screen = pg.display.set_mode(SIZE)
+        self.screen = pg.display.set_mode(sett.SIZE)
         pg.display.set_caption("Edit Text")
         self.clock = pg.time.Clock()
-        with open('save.txt', 'r') as save_string:
-            self.main_string = save_string.read()
         self.done = False
 
     # Main Program Loop
     def run(self):
         while not self.done:
             for event in pg.event.get():
-                self.main_string, self.done = get_input(self.main_string, event, self.done)
+                sett.MAIN_STRING, self.done = get_input(sett.MAIN_STRING, event, self.done)
 
             # logic
-            formatted = format_text(self.main_string, SIZE, FONT)
+            formatted = format_text(sett.MAIN_STRING, sett.SIZE, sett.FONT)
 
             # Drawing code
-            self.screen.fill(BLACK)
+            self.screen.fill(sett.BLACK)
             self.screen.blit(formatted, (0, 0))
             pg.display.flip()
         
             self.clock.tick(60)
 
-        if SAVE:
+        if sett.SAVE:
             with open('save.txt', 'w') as save_string:
-                save_string.write(self.main_string)
+                save_string.write(sett.MAIN_STRING)
         pg.quit()
         sys.exit()
 
